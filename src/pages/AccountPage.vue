@@ -1,0 +1,10 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+import { useRoute } from 'vue-router'
+import { Bookmark, ChartNoAxesCombined, History, UserRound } from 'lucide-vue-next'
+import EmptyState from '../components/EmptyState.vue'
+const route = useRoute()
+const isProfile = computed(() => route.path === '/profile')
+const isRegister = computed(() => route.path === '/register')
+</script>
+<template><div v-if="isProfile"><div class="page-title"><span class="eyebrow">MY LEARNING SPACE</span><h1>我的学习</h1><p>把每一次积累，留在自己的学习空间里。</p></div><div class="profile-banner"><UserRound :size="36" :stroke-width="1.2" /><div><h2>欢迎来到你的学习空间</h2><p>账号功能尚未开放。当前可以自由浏览所有示例内容。</p></div></div><div class="profile-grid"><section v-for="item in [{ title: '学习进度', icon: ChartNoAxesCombined, text: '后续在这里查看各等级的学习进展。' }, { title: '我的收藏', icon: Bookmark, text: '后续在这里保存想反复复习的内容。' }, { title: '最近学习', icon: History, text: '后续在这里继续上次的学习。' }]" :key="item.title" class="detail-panel"><component :is="item.icon" :size="23" /><h2>{{ item.title }}</h2><p class="muted">{{ item.text }}</p><span class="pill">即将开放</span></section></div></div><div v-else class="account-container"><div class="page-title"><span class="eyebrow">WELCOME TO KOTOBA</span><h1>{{ isRegister ? '开启你的学习空间' : '欢迎回来' }}</h1><p>{{ isRegister ? '注册账号，记录日语学习中的每一步。' : '继续积累，让日语慢慢成为日常。' }}</p></div><section class="detail-panel"><div class="auth-notice">当前为页面预览，账号功能尚未接入，表单暂不可提交。</div><form @submit.prevent><fieldset disabled><label>邮箱地址<input type="email" placeholder="your@email.com" autocomplete="email" /></label><label>密码<input type="password" placeholder="请输入密码" :autocomplete="isRegister ? 'new-password' : 'current-password'" /></label><label v-if="isRegister">确认密码<input type="password" placeholder="请再次输入密码" autocomplete="new-password" /></label><button class="button primary" type="submit">{{ isRegister ? '注册（尚未开放）' : '登录（尚未开放）' }}</button></fieldset></form><p class="auth-switch">{{ isRegister ? '已有账号？' : '还没有账号？' }}<RouterLink :to="isRegister ? '/login' : '/register'">{{ isRegister ? '查看登录页面' : '查看注册页面' }}</RouterLink></p></section><RouterLink to="/" class="text-link">← 先去探索学习内容</RouterLink></div></template>

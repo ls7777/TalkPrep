@@ -1,0 +1,14 @@
+:root {
+  --color-bg: #f8f9f5;
+  --color-surface: #ffffff;
+  --color-ink: #283e33;
+  --color-muted: #81867c;
+  --color-primary: #365b47;
+  --color-primary-soft: #eaf0e7;
+  --color-border: #e6e9df;
+  --color-accent: #ba7959;
+  --sidebar-width: 236px;
+  --radius: 12px;
+  --font-sans: 'Segoe UI', 'Microsoft YaHei', 'PingFang SC', sans-serif;
+  --font-serif: 'Yu Mincho', 'Noto Serif CJK JP', 'Songti SC', 'SimSun', serif;
+}
