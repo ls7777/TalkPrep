@@ -3,6 +3,7 @@ import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { ArrowUpRight, BookOpen, BriefcaseBusiness, ChevronRight, Home, Menu, Sprout, UserRound, X } from 'lucide-vue-next'
 import { levels } from './data/courses'
+import OpenInEditor from './components/OpenInEditor.vue'
 const route = useRoute()
 const menuOpen = ref(false)
 watch(() => route.fullPath, () => { menuOpen.value = false })
@@ -25,7 +26,7 @@ watch(() => route.fullPath, () => { menuOpen.value = false })
     </aside>
     <button v-if="menuOpen" class="menu-overlay" aria-label="关闭导航" @click="menuOpen = false"></button>
     <div class="workspace">
-      <header class="topbar"><div class="topbar-left"><button class="icon-button mobile-menu" :aria-expanded="menuOpen" aria-label="展开导航" @click="menuOpen = !menuOpen"><X v-if="menuOpen" :size="21" /><Menu v-else :size="21" /></button><span>学习空间</span><ChevronRight :size="14" /><strong>{{ route.meta.title }}</strong></div><div class="topbar-right"><span class="topbar-motto" lang="ja">今日も、一歩ずつ。</span><RouterLink to="/login" class="login-link">登录 / 注册<ArrowUpRight :size="15" /></RouterLink></div></header>
+      <header class="topbar"><div class="topbar-left"><button class="icon-button mobile-menu" :aria-expanded="menuOpen" aria-label="展开导航" @click="menuOpen = !menuOpen"><X v-if="menuOpen" :size="21" /><Menu v-else :size="21" /></button><span>学习空间</span><ChevronRight :size="14" /><strong>{{ route.meta.title }}</strong></div><div class="topbar-right"><span class="topbar-motto" lang="ja">今日も、一歩ずつ。</span><OpenInEditor /><RouterLink to="/login" class="login-link">登录 / 注册<ArrowUpRight :size="15" /></RouterLink></div></header>
       <main id="main-content" class="page-container"><RouterView /></main>
       <footer class="page-footer"><span>© {{ new Date().getFullYear() }} 言葉 Kotoba</span><span>让日语学习，成为日常的一部分。</span><RouterLink to="/">返回首页 ↑</RouterLink></footer>
     </div>

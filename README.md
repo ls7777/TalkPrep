@@ -13,6 +13,12 @@ npm run dev
 
 打开终端显示的本地地址。生产构建：`npm run build`；本地查看构建：`npm run preview`。
 
+## 使用 VS Code
+
+双击 `st_jp.code-workspace`，或在 VS Code 中选择「文件 → 从文件打开工作区」打开它。工作区推荐 Vue - Official 扩展，并提供「终端 → 运行任务」中的「启动网站」「检查并构建」「启动 Node.js 接口」任务；`Ctrl+Shift+B` 可运行构建。
+
+网站顶部在 `npm run dev` 开发模式下显示「VS Code」按钮，点击通过 `vscode://` 协议打开当前项目目录。需在同一台电脑安装 VS Code，浏览器首次可能提示允许打开外部应用。路径根据启动项目的位置自动生成，生产构建不包含本机目录或此按钮。
+
 可另开终端运行 `npm run server`，健康检查为 `http://127.0.0.1:3001/api/health`。开发服务器将 `/api` 转发到该服务。目前页面读取本地数据，无需启动后端即可浏览。
 
 ## 文件和扩展方式
