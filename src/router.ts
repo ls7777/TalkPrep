@@ -10,7 +10,7 @@ export const router = createRouter({
   scrollBehavior: () => ({ top: 0 }),
   routes: [
     { path: '/', component: HomePage, meta: { title: '学习首页' } },
-    { path: '/learn/:level', component: StudyPage, meta: { title: '等级学习' } },
+    { path: '/learn/:level(n1|n2)', component: StudyPage, meta: { title: '等级学习' } },
     { path: '/business', component: StudyPage, meta: { title: '商务日语' } },
     { path: '/lesson/:id', component: LessonPage, meta: { title: '学习内容' } },
     { path: '/profile', component: AccountPage, meta: { title: '个人中心' } },

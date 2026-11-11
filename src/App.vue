@@ -1,34 +1,43 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { ArrowUpRight, BookOpen, BriefcaseBusiness, ChevronRight, Home, Menu, Sprout, UserRound, X } from 'lucide-vue-next'
+import { ArrowUpRight, Menu, UserRound, X } from 'lucide-vue-next'
 import { levels } from './data/courses'
 import OpenInEditor from './components/OpenInEditor.vue'
+
 const route = useRoute()
 const menuOpen = ref(false)
 watch(() => route.fullPath, () => { menuOpen.value = false })
 </script>
+
 <template>
   <div class="app-shell">
-    <aside class="sidebar" :class="{ open: menuOpen }">
-      <RouterLink to="/" class="brand"><span class="brand-mark">言</span><span><strong>言葉 <small>KOTOBA</small></strong><em>日语学习空间</em></span></RouterLink>
-      <div class="sidebar-body">
-        <span class="nav-caption">你的学习空间</span>
-        <RouterLink to="/" class="nav-link" exact-active-class="active"><Home :size="18" />学习首页</RouterLink>
-        <div class="nav-group-label"><BookOpen :size="17" />JLPT 等级学习</div>
-        <RouterLink v-for="level in levels" :key="level.id" :to="`/learn/${level.id}`" class="nav-link level-nav" active-class="active"><span class="nav-level">{{ level.id.toUpperCase() }}</span><ChevronRight :size="13" /></RouterLink>
-        <RouterLink to="/business" class="nav-link business-nav" active-class="active"><BriefcaseBusiness :size="18" />商务日语<span class="tiny-tag">职场</span></RouterLink>
-        <div class="nav-divider"></div><span class="nav-caption">个人空间</span>
-        <RouterLink to="/profile" class="nav-link" active-class="active"><UserRound :size="18" />我的学习</RouterLink>
+    <a href="#main-content" class="skip-link">跳到主要内容</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <RouterLink to="/" class="brand" aria-label="言葉 Kotoba 首页">
+          <span class="brand-mark">言</span>
+          <span><strong>言葉 <small>KOTOBA</small></strong><em>日语学习空间</em></span>
+        </RouterLink>
+        <nav id="main-navigation" class="main-navigation" :class="{ open: menuOpen }" aria-label="主导航">
+          <RouterLink to="/" exact-active-class="active">学习首页</RouterLink>
+          <RouterLink v-for="level in levels" :key="level.id" :to="`/learn/${level.id}`" active-class="active">{{ level.name }}</RouterLink>
+          <RouterLink to="/business" active-class="active">商务日语</RouterLink>
+          <RouterLink to="/profile" active-class="active" class="profile-nav"><UserRound :size="15" />我的学习</RouterLink>
+        </nav>
+        <div class="header-actions">
+          <OpenInEditor />
+          <RouterLink to="/login" class="login-link">登录 / 注册<ArrowUpRight :size="14" /></RouterLink>
+          <button class="icon-button mobile-menu" :aria-expanded="menuOpen" aria-controls="main-navigation" :aria-label="menuOpen ? '关闭导航' : '展开导航'" @click="menuOpen = !menuOpen">
+            <X v-if="menuOpen" :size="22" /><Menu v-else :size="22" />
+          </button>
+        </div>
       </div>
-      <div class="sidebar-note"><Sprout :size="23" /><p>每天一点，慢慢走远。</p><span lang="ja">継続は力なり。</span></div>
-      <div class="sidebar-footer">KOTOBA · 学びのある日々</div>
-    </aside>
-    <button v-if="menuOpen" class="menu-overlay" aria-label="关闭导航" @click="menuOpen = false"></button>
+    </header>
     <div class="workspace">
-      <header class="topbar"><div class="topbar-left"><button class="icon-button mobile-menu" :aria-expanded="menuOpen" aria-label="展开导航" @click="menuOpen = !menuOpen"><X v-if="menuOpen" :size="21" /><Menu v-else :size="21" /></button><span>学习空间</span><ChevronRight :size="14" /><strong>{{ route.meta.title }}</strong></div><div class="topbar-right"><span class="topbar-motto" lang="ja">今日も、一歩ずつ。</span><OpenInEditor /><RouterLink to="/login" class="login-link">登录 / 注册<ArrowUpRight :size="15" /></RouterLink></div></header>
-      <main id="main-content" class="page-container"><RouterView /></main>
-      <footer class="page-footer"><span>© {{ new Date().getFullYear() }} 言葉 Kotoba</span><span>让日语学习，成为日常的一部分。</span><RouterLink to="/">返回首页 ↑</RouterLink></footer>
+      <div class="location-bar"><RouterLink to="/">学习空间</RouterLink><span>/</span><span>{{ route.meta.title }}</span><span class="location-motto" lang="ja">学びを、次のステージへ。</span></div>
+      <main id="main-content" class="page-container" tabindex="-1"><RouterView /></main>
+      <footer class="page-footer"><span>© {{ new Date().getFullYear() }} 言葉 Kotoba</span><span>N1 · N2 · 商务日语</span><RouterLink to="/">返回首页 ↑</RouterLink></footer>
     </div>
   </div>
 </template>
