@@ -30,9 +30,7 @@ export interface Lesson {
   example: string
   translation: string
 }
-// 此处是页面展示用的少量示例；新增内容时沿用 Lesson 结构即可。
+// 商务板块仍为示例；真实 N1/N2 内容统一从数据库读取。
 export const lessons: Lesson[] = [
-  { id: 'n2-reason', level: 'n2', category: 'grammar', title: '说明原因与背景', japanese: '〜だけに', description: '了解表达原因及相应结果的句型。', example: '期待していただけに、残念です。', translation: '正因为曾抱有期待，所以感到遗憾。' },
-  { id: 'n1-emotion', level: 'n1', category: 'grammar', title: '表达深切的感受', japanese: '〜に堪えない', description: '认识用于书面语和正式场合的表达。', example: '皆様のご支援に、感謝に堪えません。', translation: '对各位的支持，感激不尽。' },
   { id: 'business-greeting', level: 'business', category: 'keigo', title: '职场中的初次问候', japanese: 'よろしくお願いいたします', description: '用得体的表达开启职场交流。', example: '本日からお世話になります。どうぞよろしくお願いいたします。', translation: '从今天起承蒙关照。请多多指教。' },
 ]

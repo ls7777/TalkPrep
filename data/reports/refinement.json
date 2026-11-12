@@ -1,0 +1,14 @@
+{
+  "target": 502,
+  "completed": 500,
+  "failures": [
+    {
+      "id": "openjlpt-n1-grammar-to-wa",
+      "error": "质量或结构校验失败"
+    },
+    {
+      "id": "openjlpt-n1-vocabulary-8a15574f02",
+      "error": "质量或结构校验失败"
+    }
+  ]
+}

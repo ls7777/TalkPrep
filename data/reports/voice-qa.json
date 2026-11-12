@@ -1,0 +1,88 @@
+{
+  "synthetic": true,
+  "date": "2026-11-12T08:43:08.996Z",
+  "results": [
+    {
+      "name": "japanese",
+      "id": "709103c8-5258-478b-b4f6-6d652939014f",
+      "result": {
+        "id": "709103c8-5258-478b-b4f6-6d652939014f",
+        "user_id": "4f6c9e1a-7988-496a-b3d7-570ee7154362",
+        "title": "japanese.wav",
+        "status": "completed",
+        "progress": 100,
+        "duration": 7.81687,
+        "segments": [
+          {
+            "end": 5.54,
+            "text": "明日の会議は届きからです 資料を3部用意してください",
+            "start": 0
+          },
+          {
+            "end": 8.78,
+            "text": "ありがとうございます",
+            "start": 5.54
+          }
+        ],
+        "original_text": "明日の会議は届きからです 資料を3部用意してください\nありがとうございます",
+        "japanese_text": "明日の会議は届きからです 資料を3部用意してください\nありがとうございます",
+        "error": null,
+        "created_at": "2026-11-12T08:42:12.48856+00:00",
+        "updated_at": "2026-11-12T08:42:30.658+00:00"
+      }
+    },
+    {
+      "name": "mixed",
+      "id": "5e201577-56e6-4bf8-85fb-59834219c3ed",
+      "result": {
+        "id": "5e201577-56e6-4bf8-85fb-59834219c3ed",
+        "user_id": "4f6c9e1a-7988-496a-b3d7-570ee7154362",
+        "title": "mixed.wav",
+        "status": "completed",
+        "progress": 100,
+        "duration": 7.8756,
+        "segments": [
+          {
+            "end": 2,
+            "text": "明日の会議は届きからです。",
+            "start": 0
+          },
+          {
+            "end": 4.8,
+            "text": "請帮我準備三分資料。",
+            "start": 2.8
+          },
+          {
+            "end": 7.6,
+            "text": "ありがとうございます。",
+            "start": 5.6
+          }
+        ],
+        "original_text": "明日の会議は届きからです。\n請帮我準備三分資料。\nありがとうございます。",
+        "japanese_text": "明日の会議は届きからです。\nお願いします。三分の資料を準備いたします。\nありがとうございます。",
+        "error": null,
+        "created_at": "2026-11-12T08:42:13.478193+00:00",
+        "updated_at": "2026-11-12T08:42:49.396+00:00"
+      }
+    },
+    {
+      "name": "silence",
+      "id": "745cf031-8847-4e6d-99b9-4b5ab3f0dfbf",
+      "retryVerified": true,
+      "result": {
+        "id": "745cf031-8847-4e6d-99b9-4b5ab3f0dfbf",
+        "user_id": "4f6c9e1a-7988-496a-b3d7-570ee7154362",
+        "title": "silence.wav",
+        "status": "failed",
+        "progress": 0,
+        "duration": 1,
+        "segments": [],
+        "original_text": "",
+        "japanese_text": "",
+        "error": "音声を認識できませんでした。無音でないか、録音内容を確認してください。",
+        "created_at": "2026-11-12T08:42:14.351718+00:00",
+        "updated_at": "2026-11-12T08:43:07.612+00:00"
+      }
+    }
+  ]
+}

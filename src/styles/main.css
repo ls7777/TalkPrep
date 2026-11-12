@@ -221,3 +221,29 @@ fieldset .button { width: 100%; opacity: .5; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
 }
+.error-text { color: #9d352d; overflow-wrap: anywhere; }
+.action-row, .pagination { display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin:18px 0; }
+.pagination { justify-content:center; }
+.button:disabled { opacity:.5; cursor:not-allowed; }
+.service-status { display:flex; flex-direction:column; gap:6px; font-size:13px; }
+.voice-layout { display:grid; grid-template-columns:minmax(200px,1fr) minmax(0,2fr); gap:24px; align-items:start; }
+.voice-layout .detail-panel { min-width:0; }
+.memo-item { display:block; width:100%; padding:14px; text-align:left; border:1px solid #ddd; border-radius:10px; background:transparent; margin:10px 0; cursor:pointer; }
+.memo-item strong,.memo-item span { display:block; overflow-wrap:anywhere; }
+.memo-item span { margin-top:5px; font-size:12px; }
+.memo-item.selected { background:#edf3ed; border-color:#365b47; }
+textarea { display:block; width:100%; box-sizing:border-box; padding:14px; margin-top:10px; border:1px solid #d7ded7; border-radius:10px; background:#fff; font:inherit; line-height:1.9; resize:vertical; }
+#main-content { caret-color:transparent; }
+input,textarea,[contenteditable="true"] { caret-color:auto; }
+.learning-section { margin:24px 0; }
+.learning-section .tabs { margin:14px 0; }
+.learning-section .lesson-card h3 { font-size:20px; margin:12px 0; }
+.learning-section .lesson-card time { display:block; color:var(--color-muted); font-size:12px; margin:12px 0; }
+.header-error { font-size:12px; }
+.transcript-segment { display:flex; gap:12px; padding:9px 0; white-space:pre-wrap; }
+.transcript-segment time { font-size:12px; color:#6a746a; }
+.detail-panel p { overflow-wrap:anywhere; white-space:pre-wrap; }
+.detail-panel + .detail-panel { margin-top:20px; }
+progress,audio { width:100%; }
+fieldset { border:0; margin:0; padding:0; }
+@media(max-width:900px) { .voice-layout { grid-template-columns:1fr; } .header-inner { gap:12px; } .main-navigation { gap:12px; } }

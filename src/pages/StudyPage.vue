@@ -1,21 +1,33 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { computed, ref, watch, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
-import { ArrowUpRight, BookOpen, Search } from 'lucide-vue-next'
-import { levels, categories, businessCategories, lessons } from '../data/courses'
+import { api, type Course } from '../lib/api'
+import { levels,categories,businessCategories,lessons } from '../data/courses'
 import EmptyState from '../components/EmptyState.vue'
-const route = useRoute()
-const isBusiness = computed(() => route.path === '/business')
-const level = computed(() => levels.find(item => item.id === String(route.params.level).toLowerCase()))
-const valid = computed(() => isBusiness.value || !!level.value)
-const levelId = computed(() => isBusiness.value ? 'business' : level.value?.id)
-const tabs = computed(() => isBusiness.value ? businessCategories : categories)
-const category = ref('all')
-const search = ref('')
-watch(() => route.fullPath, () => { category.value = tabs.value.some(t => t.id === route.query.category) ? String(route.query.category) : 'all'; search.value = '' }, { immediate: true })
-const filtered = computed(() => lessons.filter(item => item.level === levelId.value && (category.value === 'all' || item.category === category.value) && `${item.title}${item.japanese}${item.description}`.toLowerCase().includes(search.value.trim().toLowerCase())))
+const route=useRoute(),business=computed(()=>route.path==='/business')
+const level=computed(()=>String(route.params.level||'business'))
+const category=ref('all'),search=ref(''),page=ref(1),total=ref(0),items=ref<Course[]>([]),error=ref(''),loading=ref(false)
+const tabs=computed(()=>business.value?businessCategories:categories)
+const businessLessons=computed(()=>lessons.filter(l=>l.level==='business'&&(category.value==='all'||l.category===category.value)&&`${l.japanese}${l.title}${l.description}`.includes(search.value)))
+let request=0,timer:ReturnType<typeof setTimeout>|undefined
+async function load(){
+ const current=++request
+ if(business.value){loading.value=false;error.value='';return}
+ loading.value=true;error.value=''
+ try{const r=await api<{items:Course[];total:number}>(`/lessons?${new URLSearchParams({level:level.value,category:category.value,search:search.value,page:String(page.value)})}`);if(current===request){items.value=r.items;total.value=r.total}}
+ catch(e){if(current===request){error.value=(e as Error).message;items.value=[]}}
+ finally{if(current===request)loading.value=false}
+}
+watch(()=>route.fullPath,()=>{clearTimeout(timer);category.value=tabs.value.some(t=>t.id===route.query.category)?String(route.query.category):'all';search.value='';page.value=1;void load()},{immediate:true})
+watch([category,search],()=>{clearTimeout(timer);page.value=1;timer=setTimeout(load,250)})
+watch(page,()=>void load())
+onUnmounted(()=>{request++;clearTimeout(timer)})
 </script>
-<template>
-  <div v-if="valid"><div class="page-title"><span class="eyebrow">{{ isBusiness ? 'BUSINESS JAPANESE' : `JLPT · ${level?.id.toUpperCase()}` }}</span><h1>{{ isBusiness ? '商务日语' : level?.name }}</h1><p>{{ isBusiness ? '从得体的问候开始，逐步建立职场中的日语表达能力。' : level?.description }}</p></div><div class="study-layout"><section class="study-main"><div class="study-toolbar"><div class="tabs" aria-label="内容分类"><button v-for="tab in tabs" :key="tab.id" :class="{ selected: category === tab.id }" :aria-pressed="category === tab.id" @click="category = tab.id">{{ tab.label }}</button></div><label class="search-field"><Search :size="17" /><input v-model="search" aria-label="搜索课程" placeholder="搜索本板块内容…" type="search" /></label></div><div class="content-caption">{{ filtered.length }} 个示例内容<span>课程内容将逐步完善</span></div><div v-if="filtered.length" class="lesson-grid"><RouterLink v-for="lesson in filtered" :key="lesson.id" :to="`/lesson/${lesson.id}`" class="lesson-card"><div class="lesson-card-top"><BookOpen :size="22" :stroke-width="1.4" /><span class="pill">示例内容</span></div><span class="lesson-japanese" lang="ja">{{ lesson.japanese }}</span><h2>{{ lesson.title }}</h2><p>{{ lesson.description }}</p><div class="lesson-card-footer"><span>查看内容</span><ArrowUpRight :size="18" /></div></RouterLink></div><EmptyState v-else :title="search ? '没有找到匹配的内容' : '这片学习园地，等待新的内容'" :description="search ? '试试其他关键词，或切换内容分类。' : '板块已经准备好，后续将在这里添加课程与练习。'" /></section><aside class="study-aside"><span class="eyebrow">LEARNING GUIDE</span><h3>按照自己的节奏学习</h3><ol><li>选择想学习的分类</li><li>理解表达与例句</li><li>尝试复述并定期复习</li></ol><div class="aside-divider"></div><h3>学习进度</h3><p>学习记录功能将在后续开放。</p><RouterLink to="/profile" class="text-link">查看个人中心 →</RouterLink></aside></div></div>
-  <EmptyState v-else title="没有这个学习等级" description="请选择 N1、N2 或商务日语板块。"><RouterLink to="/" class="button primary">返回首页</RouterLink></EmptyState>
-</template>
+<template><div><div class="page-title"><span class="eyebrow">{{ business?'BUSINESS JAPANESE':'JLPT · '+level.toUpperCase() }}</span><h1>{{ business?'商务日语':level.toUpperCase() }}</h1><p>{{ business?'从得体的表达开始，走进真实的职场。':levels.find(l=>l.id===level)?.description }}</p></div>
+ <div class="study-toolbar"><div class="tabs"><button v-for="tab in tabs" :key="tab.id" :class="{selected:category===tab.id}" :aria-pressed="category===tab.id" @click="category=tab.id">{{ tab.label }}</button></div><label class="search-field"><input v-model="search" type="search" aria-label="搜索课程" placeholder="搜索日语、读音或释义…" /></label></div>
+ <p v-if="!business" class="muted">社区整理的 N1 / N2 学习资料，非官方完整考纲。中文辅助翻译标注为机器翻译。</p>
+ <p v-if="loading" role="status">正在读取课程…</p><div v-else-if="error" class="detail-panel"><p role="alert" class="error-text">{{ error }}</p><button class="button" @click="load">重新加载</button></div>
+ <template v-else-if="business"><p class="content-caption">{{ businessLessons.length }} 条示例内容</p><div class="lesson-grid"><RouterLink v-for="l in businessLessons" :key="l.id" :to="'/lesson/'+l.id" class="lesson-card"><span class="pill">商务示例</span><h2>{{ l.japanese }}</h2><p>{{ l.description }}</p></RouterLink></div></template>
+ <template v-else><p class="content-caption">共 {{ total }} 条内容 · 第 {{ page }} 页</p><div v-if="items.length" class="lesson-grid"><RouterLink v-for="l in items" :key="l.id" :to="'/lesson/'+l.id" class="lesson-card"><span class="pill">{{ l.category==='grammar'?'语法':'单词' }}</span><h2 lang="ja">{{ l.japanese }}</h2><p lang="ja">{{ l.reading }}</p><p>{{ l.meaning_zh||'中文释义待补充' }}</p><small v-if="l.translation_machine">中文机器翻译</small></RouterLink></div><EmptyState v-else title="暂无匹配内容" description="可尝试其他关键词。阅读、听力和练习题库尚未开放。" />
+ <div class="pagination"><button class="button" :disabled="page<=1" @click="page--">上一页</button><span>{{ page }} / {{ Math.max(1,Math.ceil(total/24)) }}</span><button class="button" :disabled="page*24>=total" @click="page++">下一页</button></div></template>
+ </div></template>

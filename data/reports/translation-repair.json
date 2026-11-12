@@ -1,0 +1,90 @@
+{
+  "repaired": 388,
+  "failures": [
+    {
+      "id": "openjlpt-n1-grammar-ikan-de-ikan-ni-yorazu",
+      "field": 0,
+      "error": "中文校验未通过"
+    },
+    {
+      "id": "openjlpt-n1-grammar-zu-jimai",
+      "field": 1,
+      "error": "中文校验未通过"
+    },
+    {
+      "id": "openjlpt-n1-grammar-soba-kara",
+      "field": 1,
+      "error": "中文校验未通过"
+    },
+    {
+      "id": "openjlpt-n1-grammar-ni-shite",
+      "field": "meaning",
+      "error": "中文校验未通过"
+    },
+    {
+      "id": "openjlpt-n1-grammar-ni-mo-mashite",
+      "field": 0,
+      "error": "中文校验未通过"
+    },
+    {
+      "id": "openjlpt-n1-grammar-kare-kare",
+      "field": "meaning",
+      "error": "中文校验未通过"
+    },
+    {
+      "id": "openjlpt-n1-grammar-nai-to-mo-kagiranai",
+      "field": 0,
+      "error": "中文校验未通过"
+    },
+    {
+      "id": "openjlpt-n1-grammar-nai-to-mo-kagiranai",
+      "field": 2,
+      "error": "中文校验未通过"
+    },
+    {
+      "id": "openjlpt-n2-grammar-uru-enai",
+      "field": 0,
+      "error": "中文校验未通过"
+    },
+    {
+      "id": "openjlpt-n1-vocabulary-568d94afad",
+      "field": "meaning",
+      "error": "中文校验未通过"
+    },
+    {
+      "id": "openjlpt-n1-vocabulary-2564dfcfcb",
+      "field": "meaning",
+      "error": "中文校验未通过"
+    },
+    {
+      "id": "openjlpt-n1-vocabulary-2b6f94e367",
+      "field": "meaning",
+      "error": "中文校验未通过"
+    },
+    {
+      "id": "openjlpt-n1-vocabulary-a86e81be17",
+      "field": "meaning",
+      "error": "中文校验未通过"
+    },
+    {
+      "id": "openjlpt-n2-vocabulary-328692d4b2",
+      "field": "meaning",
+      "error": "中文校验未通过"
+    },
+    {
+      "id": "openjlpt-n2-vocabulary-e1483430fd",
+      "field": "meaning",
+      "error": "中文校验未通过"
+    },
+    {
+      "id": "openjlpt-n2-vocabulary-e380a00f33",
+      "field": 0,
+      "error": "中文校验未通过"
+    },
+    {
+      "id": "openjlpt-n2-vocabulary-e380a00f33",
+      "field": 1,
+      "error": "中文校验未通过"
+    }
+  ]
+}

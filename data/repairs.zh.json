@@ -1,0 +1,20 @@
+{
+ "openjlpt-n1-grammar-to-wa":{"meaning":"没想到竟然……；居然……（表示惊讶）","notes":"可以用在句末，将惊讶、感慨等反应留而不说，也可接「思わなかった」「驚いた」等。注意与表示定义的「〜とは（所谓……就是……）」区分。","examples":{"0":"没想到那个一向认真的他，竟然挪用了公司的钱。","1":"时隔十年重返故乡，我做梦也没想到那里会发生如此大的变化。","2":"第一次参加比赛就一举夺冠，想必连本人也很惊讶。"}},
+ "openjlpt-n1-vocabulary-8a15574f02":{"meaning":"摩擦；磨损；擦伤；变得世故"},
+ "openjlpt-n1-vocabulary-71377eae9e":{"meaning":"挑战；争胜；求爱","examples":{"0":"魔王向神提出了棒球比赛的挑战。","1":"贝蒂向我提出进行一场网球比赛。"}},
+ "openjlpt-n1-grammar-ikan-de-ikan-ni-yorazu":{"examples":{"0":"下个赛季的合同将根据本赛季的成绩决定。"}},
+ "openjlpt-n1-grammar-zu-jimai":{"examples":{"1":"忙于应付工作，结果一直没能向恩师道谢。"}},
+ "openjlpt-n1-grammar-soba-kara":{"examples":{"1":"新单词刚记住就又忘了。"}},
+ "openjlpt-n1-grammar-ni-shite":{"meaning":"到了……才……；即使是……；既是……又是……"},
+ "openjlpt-n1-grammar-ni-mo-mashite":{"examples":{"0":"今年夏天的酷热比往年更加厉害。"}},
+ "openjlpt-n1-grammar-kare-kare":{"meaning":"无论……还是……（用于固定的成对表达）"},
+ "openjlpt-n1-grammar-nai-to-mo-kagiranai":{"examples":{"0":"路上也可能遇到堵车，我们还是早点出发吧。","2":"大地震随时都有可能发生，平时做好准备很重要。"}},
+ "openjlpt-n2-grammar-uru-enai":{"examples":{"0":"无论多么小心，事故仍有可能发生。"}},
+ "openjlpt-n1-vocabulary-568d94afad":{"meaning":"仰望；尊敬；仰赖；请求；一饮而尽"},
+ "openjlpt-n1-vocabulary-2564dfcfcb":{"meaning":"戳；捅；刺；敲击；攻击；挑剔"},
+ "openjlpt-n1-vocabulary-2b6f94e367":{"meaning":"水槽；洗涤槽"},
+ "openjlpt-n1-vocabulary-a86e81be17":{"meaning":"举办；举行；感到（困意、恶心等）；出现……迹象"},
+ "openjlpt-n2-vocabulary-328692d4b2":{"meaning":"送假名（接在汉字后表示活用等的假名）"},
+ "openjlpt-n2-vocabulary-e1483430fd":{"meaning":"假名用法；假名拼写规则"},
+ "openjlpt-n2-vocabulary-e380a00f33":{"examples":{"0":"怎样添加注音假名？","1":"请给这本书加上注音假名。"}}
+}
